@@ -1,0 +1,23 @@
+{% extends 'economics/base.html' %}
+
+{% block title %}{{ program.code }} - {{ program.name }}{% endblock %}
+
+{% block content %}
+    <h1>Спеціальність: {{ program.code }} {{ program.name }}</h1>
+    
+    <h2>Загальна інформація</h2>
+    <p><strong>Випускова кафедра:</strong> <a href="{% url 'department_detail' program.issuing_department.pk %}">{{ program.issuing_department.name }}</a></p>
+    <p><strong>Координатор набору:</strong> {{ program.coordinator_name }} ({{ program.coordinator_contact }})</p>
+    
+    <h2>Повний опис</h2>
+    <p>{{ program.description }}</p>
+
+    <h2>Список дисциплін</h2>
+    <ul>
+        {% for discipline in program.disciplines_list.all %}
+            <li>{{ discipline.name }}</li>
+        {% empty %}
+            <li>Немає інформації про дисципліни</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

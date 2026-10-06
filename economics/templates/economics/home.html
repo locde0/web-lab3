@@ -1,0 +1,18 @@
+{% extends 'economics/base.html' %}
+
+{% block title %}Головна{% endblock %}
+
+{% block content %}
+    {% if main_page %}
+        <h1>Головна сторінка факультету</h1>
+        <h2>Опис</h2>
+        <p>{{ main_page.description }}</p>
+        <h2>Основна інформація</h2>
+        <p>{{ main_page.main_info }}</p>
+        <h2>Контакти</h2>
+        <p>{{ main_page.contacts }}</p>
+    {% else %}
+        <h1>Вітаємо на факультеті!</h1>
+        <p>Заповніть інформацію для головної сторінки в адмін-панелі.</p>
+    {% endif %}
+{% endblock %}

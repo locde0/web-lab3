@@ -1,0 +1,30 @@
+{% extends 'economics/base.html' %}
+
+{% block title %}Програми обміну{% endblock %}
+
+{% block content %}
+    <h1>Програми академічного обміну</h1>
+    <ul>
+        {% for program in exchange_list %}
+            <li>
+                <strong>Університет:</strong> {{ program.university }} ({{ program.country }})
+                <br>
+                <strong>Мови навчання:</strong> {{ program.languages }}
+                <br>
+                <strong>Кількість місць:</strong> {{ program.places }}
+                <br>
+                <strong>Дедлайн подачі:</strong> {{ program.deadline }}
+                <br>
+                <strong>Статус:</strong> 
+                {% if program.deadline >= today %}
+                    <span style="color: green;">Прийом триває</span>
+                {% else %}
+                    <span style="color: red;">Прийом завершено</span>
+                {% endif %}
+                <br>
+                <strong>Опис:</strong> {{ program.description }}
+            </li>
+            <br>
+        {% endfor %}
+    </ul>
+{% endblock %}

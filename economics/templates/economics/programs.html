@@ -1,0 +1,19 @@
+{% extends 'economics/base.html' %}
+
+{% block title %}Спеціальності{% endblock %}
+
+{% block content %}
+    <h1>Список спеціальностей</h1>
+    <ul>
+        {% for program in programs %}
+            <li>
+                <a href="{% url 'program_detail' program.pk %}">{{ program.code }} - {{ program.name }}</a>
+                <br>
+                <strong>Опис:</strong> {{ program.description|truncatewords:50 }}
+                <br>
+                <strong>Координатор:</strong> {{ program.coordinator_name }} ({{ program.coordinator_contact }})
+            </li>
+            <br>
+        {% endfor %}
+    </ul>
+{% endblock %}
