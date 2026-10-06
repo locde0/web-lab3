@@ -1,0 +1,25 @@
+{% extends 'economics/base.html' %}
+
+{% block title %}Кафедри{% endblock %}
+
+{% block content %}
+    <h1>Список кафедр</h1>
+    <ul>
+        {% for department in departments %}
+            <li>
+                <a href="{% url 'department_detail' department.pk %}">{{ department.name }}</a>
+                - Завідувач: {{ department.department_chair }}
+                <br>
+                Випускові спеціальності:
+                <ul>
+                    {% for program in department.programs.all %}
+                        <li>{{ program.name }}</li>
+                    {% empty %}
+                        <li>Немає випускових спеціальностей</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <br>
+        {% endfor %}
+    </ul>
+{% endblock %}

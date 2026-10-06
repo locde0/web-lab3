@@ -1,0 +1,26 @@
+{% extends 'economics/base.html' %}
+
+{% block title %}{{ department.name }}{% endblock %}
+
+{% block content %}
+    <h1>Кафедра: {{ department.name }}</h1>
+    <p><strong>Завідувач кафедри:</strong> {{ department.department_chair }}</p>
+
+    <h2>Випускові спеціальності</h2>
+    <ul>
+        {% for program in department.programs.all %}
+            <li><a href="{% url 'program_detail' program.pk %}">{{ program.name }}</a></li>
+        {% empty %}
+            <li>Немає</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Викладачі</h2>
+    <ul>
+        {% for teacher in department.teachers.all %}
+            <li>{{ teacher.name }} - {{ teacher.position }}, {{ teacher.degree }}</li>
+        {% empty %}
+            <li>Немає інформації про викладачів</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
